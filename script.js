@@ -63,7 +63,7 @@ longBooksTitles.forEach(title => {
 //SECTION - IL primo libro scontato
 //Creare un array (availableBooks) che contiene tutti i libri disponibili.
 const availableBooks = books.filter(book => book.available === true);
-console.log(`Libri: disponibili:`,availableBooks)
+console.log(`Libri disponibili:`,availableBooks)
 
 // Calcolare il prezzo scontato del 20% per ogni libro
 function calcolaPrezzoScontato(prezzo) {
