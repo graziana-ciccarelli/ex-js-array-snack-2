@@ -132,3 +132,32 @@ console.log(`Somma età degli autori:`, agesSum);
 
 const averageAge = agesSum / ages.length;
 console.log('Età media degli autori:', averageAge.toFixed(2));
+
+
+//!SECTION - Raccogli i libri
+
+// Funzione che recupera i libri in base agli ID tramite l'API locale
+async function getBooks(ids) {
+    // Mappa gli ID per creare le richieste alle API per ciascun libro
+    const bookPromises = ids.map(id => 
+        fetch(`http://localhost:3333/books/${id}`)
+            .then(response => response.json())
+    );
+    
+    // Attendi che tutte le richieste vengano risolte
+    const books = await Promise.all(bookPromises);
+    
+    // Restituisci l'array di libri
+    return books;
+}
+
+// Array di ID per testare la funzione
+const ids = [2, 13, 7, 21, 19];
+
+// Test della funzione
+getBooks(ids)
+    .then(books => console.log(books))
+    .catch(error => console.error("Errore nel recupero dei libri:", error));
+
+
+
